@@ -1,12 +1,16 @@
 import datetime
 import hashlib
-
+# every block is an inst of the block class
 class block:
     blockNo = 0
     data = None
+    # pointer to the next block
     next = None
     hash = None
     nonce = 0
+    # store the hash of the previous block to make the blockchain immutalble
+    # thus in order to change a block we will have to change every subsequent 
+    # block due to the previous hash
     previous_hash = 0x0
     timestamp = datetime.datetime.now()
 
@@ -28,9 +32,10 @@ class block:
         return "Block Hash: " + str(self.hash()) + "\nBlockNo: " + str(self.blockNo) + "\nBlock Data: " + str(self.data) + "\nHashes: " + str(self.nonce) + "\n--------------"
 
 class Blockchain:
-
+    # establishing hash finding difficulty
     diff = 20
     maxNonce = 2**32
+    # increasing the difficulty
     target = 2 ** (256-diff)
 
     block = block("Genesis")
@@ -40,7 +45,7 @@ class Blockchain:
 
         block.previous_hash = self.block.hash()
         block.blockNo = self.block.blockNo + 1
-
+        # adding a new block
         self.block.next = block
         self.block = self.block.next
 
@@ -54,10 +59,10 @@ class Blockchain:
                 block.nonce += 1
 
 blockchain = Blockchain()
-
+# this will generate 10 random blocks
 for n in range(10):
     blockchain.mine(block("Block " + str(n+1)))
-
+# this will print out each block
 while blockchain.head != None:
     print(blockchain.head)
     blockchain.head = blockchain.head.next
