@@ -62,7 +62,7 @@ blockchain = Blockchain()
 # this will generate 10 random blocks
 for n in range(10):
     blockchain.mine(block("Block " + str(n+1)))
-# this will print out each block
+# this will print out each block +1
 while blockchain.head != None:
     print(blockchain.head)
     blockchain.head = blockchain.head.next
