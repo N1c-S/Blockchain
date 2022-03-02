@@ -64,5 +64,5 @@ for n in range(10):
     blockchain.mine(block("Block " + str(n+1)))
 # this will print out each block +1
 while blockchain.head != None:
-    print(blockchain.head)
+    # print(blockchain.head)
     blockchain.head = blockchain.head.next
