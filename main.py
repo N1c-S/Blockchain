@@ -1,6 +1,6 @@
 import datetime
 import hashlib
-# every block is an inst of the block class
+
 class block:
     blockNo = 0
     data = None
@@ -8,9 +8,6 @@ class block:
     next = None
     hash = None
     nonce = 0
-    # store the hash of the previous block to make the blockchain immutalble
-    # thus in order to change a block we will have to change every subsequent 
-    # block due to the previous hash
     previous_hash = 0x0
     timestamp = datetime.datetime.now()
 
